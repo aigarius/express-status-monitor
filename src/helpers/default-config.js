@@ -3,6 +3,7 @@ module.exports = {
   theme: 'default.css',
   path: '/status',
   socketPath: '/socket.io',
+  socketPathServer: '/socket.io',
   spans: [
     {
       interval: 1,

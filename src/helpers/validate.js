@@ -22,6 +22,8 @@ module.exports = config => {
     typeof config.path === 'string' ? config.path : defaultConfig.path;
   config.socketPath =
     typeof config.socketPath === 'string' ? config.socketPath : defaultConfig.socketPath;
+  config.socketPathServer =
+    typeof config.socketPathServer === 'string' ? config.socketPathServer : config.socketPath;
   config.spans =
     typeof config.spans === 'object' ? config.spans : defaultConfig.spans;
   config.port =

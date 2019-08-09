@@ -45,6 +45,8 @@ title: 'Express Status',  // Default title
 theme: 'default.css',     // Default styles
 path: '/status',
 socketPath: '/socket.io', // In case you use a custom path
+socketPathServer: '/socket.io', // If your app is in a subfolder URL, set this
+                                // without the subfolder
 websocket: existingSocketIoInstance,
 spans: [{
   interval: 1,            // Every second
@@ -119,6 +121,19 @@ const statusMonitor = require('express-status-monitor')({ path: '' });
 app.use(statusMonitor.middleware); // use the "middleware only" property to manage websockets
 app.get('/status', auth.connect(basic), statusMonitor.pageRoute); // use the pageRoute property to serve the dashboard html page
 ```
+
+## Using in an app that is in a subpath
+
+If your app is proxied by nginx (or something else) to appear as
+`http://example.com/app/` then use the following config:
+```
+app.use(require('express-status-monitor')({
+    socketPath: "/app/socket.io",
+    socketPathServer: "/socket.io"
+    }));
+```
+
+And you will see the status page at `http://example.com/app/status`
 
 ## Using module with socket.io in project
 
